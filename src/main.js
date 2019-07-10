@@ -6,6 +6,9 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
+import 'bootstrap/dist/css/bootstrap.css'
+import './assets/css/font-awesome.min.css'
+
 new Vue({
   router,
   store,
