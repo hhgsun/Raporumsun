@@ -1,34 +1,59 @@
 <template>
   <div id="table">
-    <HeaderPageComp title="Tablo" badge="yeniler" />
-
-<b>incele</b> chart:<br>
-https://developers.google.com/chart/interactive/docs/
-<br>
-https://www.chartjs.org/
-<br>
+    <HeaderPageComp
+      title="Tablo"
+      badge="yeniler"
+    />
 
 
-    <div class="row p-3">
-        <div class="col col-md-5">
-								<h4>This Month Stats:</h4>
-										Visits<span class="pull-right strong">+ 45%</span>
-										 <div class="progress">
-											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">45%</div>
-										</div>
-									
-										395 New Users<span class="pull-right strong">+ 57%</span>
-										 <div class="progress">
-											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width:57%">57%</div>
-										</div>
-									
-										12.593 Downloads<span class="pull-right strong">+ 25%</span>
-										 <div class="progress">
-											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">25%</div>
-										</div>
-							</div>
+    <button @click="generatePush()">PUSH SEND</button>
+
+    <b>incele</b> chart:<br>
+    https://developers.google.com/chart/interactive/docs/
+    <br>
+    https://www.chartjs.org/
+    <br>
+
+    <div class="p-3">
+      <div class="col col-md-5">
+        <h4>This Month Stats:</h4>
+        Visits<span class="pull-right strong">+ 45%</span>
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-success"
+            role="progressbar"
+            aria-valuenow="45"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width:45%"
+          >45%</div>
+        </div>
+
+        395 New Users<span class="pull-right strong">+ 57%</span>
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-success"
+            role="progressbar"
+            aria-valuenow="57"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width:57%"
+          >57%</div>
+        </div>
+
+        12.593 Downloads<span class="pull-right strong">+ 25%</span>
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-success"
+            role="progressbar"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width:25%"
+          >25%</div>
+        </div>
+      </div>
     </div>
-
 
     <br>
 
@@ -168,15 +193,42 @@ import HeaderPageComp from "@/components/HeaderPageComp.vue";
 
 export default {
   name: "Table",
+  data() {
+    return {
+      pushData: {
+        'notification': {
+          "title": "Background Message Title hhg",
+          "body": "Background Message Body hhg"
+        },
+        "to": ""
+      }
+    };
+  },
   components: {
     HeaderPageComp
+  },
+  methods: {
+    generatePush() {
+      /* let headers = new Headers({
+        "Content-Type": "application/json",
+        Authorization: "key=<firebase server key>"
+      });
+      let options = new RequestOptions({ headers: headers });
+      return this.http
+        .post("https://fcm.googleapis.com/fcm/send", pushData, options)
+        .map(data => {
+          console.log("Successfully Sent");
+        }); */
+      console.log('GÖNDER', process.env.NODE_ENV);
+
+    }
   }
 };
 </script>
 
 <style scoped>
 .demo-chart:nth-child(1) {
-    color: #ACEC00;
+  color: #acec00;
 }
 </style>
 
