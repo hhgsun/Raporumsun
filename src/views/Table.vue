@@ -1,11 +1,6 @@
 <template>
   <div id="table">
-    <HeaderPageComp
-      title="Tablo"
-      badge="yeniler"
-    />
-
-
+    
     <button @click="generatePush()">PUSH SEND</button>
 
     <b>incele</b> chart:<br>
@@ -57,7 +52,7 @@
 
     <br>
 
-    <div class="table-responsive">
+    <div id="tabloDeneme" class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
           <tr>
@@ -189,8 +184,6 @@
 </template>
 
 <script>
-import HeaderPageComp from "@/components/HeaderPageComp.vue";
-
 export default {
   name: "Table",
   data() {
@@ -204,22 +197,36 @@ export default {
       }
     };
   },
-  components: {
-    HeaderPageComp
-  },
   methods: {
     generatePush() {
-      /* let headers = new Headers({
-        "Content-Type": "application/json",
-        Authorization: "key=<firebase server key>"
+      var key = 'AAAAnUwRijc:APA91bHCgJ_Ci5i21BvqgNBqTjsYZlFkuEALhqqxEW1VGRGy7icp1ph0RNbh0kjaHdoNs_3dpoppa_zwOmhuDQ2FkIr_R8-oZx9TFKaF-TOPauRFZoHzi8ANWwtARHJCXxVFoGs6h45k';
+      const payload = {
+        "notification": {
+          "title": "Veri Güncellemesi Var 3",
+          "body": "Değişen istatistikleri görebilirsiniz, gezebilirsiniz ayrıca, tuhaf haller var burda",
+          "icon": "https://raporumsun.web.app/img/icons/msapplication-icon-144x144.png",
+          "click_action": "https://raporumsun.web.app/#/table"
+        },
+        "data": {
+          "message": "this message from hhgsun"	
+        },
+        "to": "/topics/all"
+      };
+      fetch('https://fcm.googleapis.com/fcm/send',{
+        method: 'POST',
+        headers: {
+          'Authorization': 'key=' + key,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          notification: payload.notification,
+          to: payload.to
+        })
+      }).then(function(res){
+        console.log(res);
+      }).catch(function(err){
+        console.log(err);
       });
-      let options = new RequestOptions({ headers: headers });
-      return this.http
-        .post("https://fcm.googleapis.com/fcm/send", pushData, options)
-        .map(data => {
-          console.log("Successfully Sent");
-        }); */
-      console.log('GÖNDER', process.env.NODE_ENV);
 
     }
   }

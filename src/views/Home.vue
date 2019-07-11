@@ -1,9 +1,5 @@
 <template>
   <div class="home">
-    <HeaderPageComp
-      title="Anasayfa"
-      badge="Yeniler"
-    />
 
     <div class="container">
 
@@ -303,13 +299,8 @@
 
 <script>
 // @ is an alias to /src
-import HeaderPageComp from "@/components/HeaderPageComp.vue";
-
 export default {
   name: "home",
-  components: {
-    HeaderPageComp
-  }
 };
 </script>
 
