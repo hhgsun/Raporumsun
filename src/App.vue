@@ -54,6 +54,7 @@
 <script>
 import * as firebase from 'firebase/app'
 import 'firebase/messaging'
+import { clearInterval } from 'timers';
 
 export default {
   data(){
@@ -76,7 +77,7 @@ export default {
     }
   },
   watch: {
-    $route(to, from){
+    $route(to){
       this.title = to.name;
       this.badge = to.meta.badge;
       this.$refs.drawerLayout.toggle();
@@ -84,14 +85,20 @@ export default {
   },
   created(){
     const self = this;
+    var count = 0;
+    var intervalList = [];
     // ON MESSAGE EVENT
     firebase.messaging().onMessage(function(notif){
       self.notifications.push({
         title: notif.notification.title
       });/* {title: notif.notification.title, body: notif.notification.body, icon: notif.notification.icon} */
-      var _interval = setInterval(function(){
+      
+      intervalList[count] = setInterval(function(){
         self.notifications.pop();
+        clearInterval(intervalList[count]);
       }, 3000);
+      count = count + 1;
+
       self.refreshBtn = true;
     });
   }
